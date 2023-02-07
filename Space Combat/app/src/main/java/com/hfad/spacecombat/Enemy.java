@@ -6,21 +6,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 import static com.hfad.spacecombat.GameView.screenRatioX;
-import static com.hfad.spacecombat.GameView.screenRatioY;
-
+import static com.hfad.spacecombat.GameView.screenRatioY;  
 public class Enemy {
 
     public int speed = 10;
     public boolean wasShot = true;
     int x = 0, y, width, height, enemyCounter = 1;
-    Bitmap enemy1, enemy2, enemy3, enemy4;
+    Bitmap enemy1, enemy3;
 
     Enemy (Resources res) {
 
         enemy1 = BitmapFactory.decodeResource(res, R.drawable.enemy1);
         enemy2 = BitmapFactory.decodeResource(res, R.drawable.enemy1);
-        enemy3 = BitmapFactory.decodeResource(res, R.drawable.enemy1);
-        enemy4 = BitmapFactory.decodeResource(res, R.drawable.enemy1);
+       
 
         width = enemy1.getWidth();
         height = enemy1.getHeight();
@@ -31,10 +29,9 @@ public class Enemy {
         width = (int) (width * screenRatioX);
         height = (int) (height * screenRatioY);
 
-        enemy1 = Bitmap.createScaledBitmap(enemy1, width, height, false);
-        enemy2 = Bitmap.createScaledBitmap(enemy2, width, height, false);
+        enemy1 = Bitmap.createScaledBitmap(enemy1, width, height, false);   
         enemy3 = Bitmap.createScaledBitmap(enemy3, width, height, false);
-        enemy4 = Bitmap.createScaledBitmap(enemy4, width, height, false);
+
 
         y = -height;
     }
@@ -51,15 +48,6 @@ public class Enemy {
             return enemy2;
         }
 
-        if (enemyCounter == 3) {
-            enemyCounter++;
-            return enemy3;
-        }
-
-        enemyCounter = 1;
-
-        return enemy4;
-    }
 
     Rect getCollisionShape () {
         return new Rect(x, y, x + width, y + height);
